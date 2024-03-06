@@ -28,6 +28,8 @@ const names = [
   'Foo',
   'Bar',
   'Baz',
+  'Pip',
+  'Zoo',
 ];
 
 extension RandomElement<T> on Iterable<T> {
