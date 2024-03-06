@@ -1,4 +1,4 @@
-# my_app_final
+# Random String generator
 
 A new Flutter project.
 
