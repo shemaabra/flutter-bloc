@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
@@ -50,9 +49,9 @@ extension UrlString on PersonUrl {
   String get urlString {
     switch (this) {
       case PersonUrl.person1:
-        return 'http://127.0.0.1:5500/api/person1.json';
+        return 'http://192.168.1.112:5500/api/person1.json';
       case PersonUrl.person2:
-        return 'http://127.0.0.1:5500/api/person1.json';
+        return 'http://192.168.1.112:5500/api/person1.json';
     }
   }
 }
@@ -174,21 +173,21 @@ class HomePage extends StatelessWidget {
           }, builder: (context, fetchResult) {
             final person = fetchResult?.person;
             if (person == null) {
-              return SizedBox();
+              return const SizedBox();
             } else {
               return Expanded(
-              child: ListView.builder(
-                itemCount: person.length,
-                itemBuilder: (context, index) {
-                  final persons = person[index]!;
-                  return ListTile(
-                    title: Text(persons.name),
-                  );
-                },
-              ),
-            );
+                child: ListView.builder(
+                  itemCount: person.length,
+                  itemBuilder: (context, index) {
+                    final persons = person[index]!;
+                    return ListTile(
+                      title: Text(persons.name),
+                    );
+                  },
+                ),
+              );
             }
-            
+
             return Container();
           }),
         ],
