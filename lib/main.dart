@@ -3,6 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:developer' as devtools show log;
+
+extension Log on Object {
+  void log() => devtools.log(toString());
+}
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +23,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+        ),
         useMaterial3: true,
       ),
       home: BlocProvider(
@@ -51,7 +58,7 @@ extension UrlString on PersonUrl {
       case PersonUrl.person1:
         return 'http://192.168.1.112:5500/api/person1.json';
       case PersonUrl.person2:
-        return 'http://192.168.1.112:5500/api/person1.json';
+        return 'http://192.168.1.112:5500/api/person2.json';
     }
   }
 }
@@ -171,6 +178,7 @@ class HomePage extends StatelessWidget {
               buildWhen: (previousResult, currentResult) {
             return previousResult?.person != currentResult?.person;
           }, builder: (context, fetchResult) {
+            fetchResult?.log();
             final person = fetchResult?.person;
             if (person == null) {
               return const SizedBox();
